@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,25 +49,50 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text(
-                  "Serhan Kars",
-                  style: TextStyle(
-                      fontFamily: "BitmapFont",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 50),
+                const FittedBox(
+                  alignment: Alignment.center,
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    "Serhan Kars",
+                    style: TextStyle(
+                        fontFamily: "BitmapFont",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 50),
+                  ),
                 ),
-                Stack(
-                  children: [
-                    const CircleAvatar(
-                      radius: 100,
-                      backgroundImage: AssetImage("assets/imgs/profile.png"),
+                Container(
+                  color: Colors.white,
+                  width: double.infinity,
+                  height: 270,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Stack(
+                          children: [
+                            const CircleAvatar(
+                              radius: 100,
+                              backgroundImage:
+                                  AssetImage("assets/imgs/profile.png"),
+                            ),
+                            CircleAvatar(
+                              radius: 100,
+                              backgroundImage: AssetImage(
+                                  "assets/imgs/profile${_mousePositionHorizontal}${_mousePositionVertical}.png"),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Software Engineer",
+                          style:
+                              TextStyle(fontFamily: "BitmapFont", fontSize: 20),
+                        ),
+                      ],
                     ),
-                    CircleAvatar(
-                      radius: 100,
-                      backgroundImage: AssetImage(
-                          "assets/imgs/profile${_mousePositionHorizontal}${_mousePositionVertical}.png"),
-                    ),
-                  ],
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -78,17 +103,21 @@ class _HomePageState extends State<HomePage> {
                     IconButton(
                       icon: Image.asset('assets/imgs/github.png'),
                       iconSize: 30,
-                      onPressed: () {
-                        String url = 'https://github.com/serhankars';
-                        html.window.open(url, '_blank');
+                      onPressed: () async {
+                        final Uri url =
+                            Uri.parse('https://github.com/serhankars');
+
+                        await launchUrl(url);
                       },
                     ),
                     IconButton(
                       icon: Image.asset('assets/imgs/twitter.png'),
                       iconSize: 30,
-                      onPressed: () {
-                        String url = 'https://twitter.com/learningathing';
-                        html.window.open(url, '_blank');
+                      onPressed: () async {
+                        final Uri url =
+                            Uri.parse('https://twitter.com/learningathing');
+
+                        await launchUrl(url);
                       },
                     ),
                   ],
