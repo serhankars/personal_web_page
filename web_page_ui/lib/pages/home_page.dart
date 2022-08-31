@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
+  static const String route = "/home";
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -101,6 +102,16 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
+                      icon: Image.asset('assets/imgs/linkedin.png'),
+                      iconSize: 45,
+                      onPressed: () async {
+                        final Uri url = Uri.parse(
+                            'https://www.linkedin.com/in/serhan-kars-0ba5b238/');
+
+                        await launchUrl(url);
+                      },
+                    ),
+                    IconButton(
                       icon: Image.asset('assets/imgs/github.png'),
                       iconSize: 30,
                       onPressed: () async {
@@ -120,6 +131,21 @@ class _HomePageState extends State<HomePage> {
                         await launchUrl(url);
                       },
                     ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // IconButton(
+                    //   icon: Image.asset('assets/imgs/twitter.png'),
+                    //   iconSize: 30,
+                    //   onPressed: () async {
+                    //     final Uri url =
+                    //         Uri.parse('https://twitter.com/learningathing');
+
+                    //     await launchUrl(url);
+                    //   },
+                    // ),
                   ],
                 )
               ],
