@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_page_ui/model/enums/horizontal_position.dart';
+import 'package:web_page_ui/model/enums/vertical_position.dart';
+
+import '../widgets/eye_rolling_avatar.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = "/home";
@@ -12,8 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _mouseX = 0.0;
   double _mouseY = 0.0;
-  String _mousePositionHorizontal = "";
-  String _mousePositionVertical = "";
+  HorizontalPosition _mousePositionHorizontal = HorizontalPosition.center;
+  VerticalPosition _mousePositionVertical = VerticalPosition.center;
   int topBorder = 90;
   int bottomBorder = 300;
 
@@ -42,19 +46,19 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       if (_mouseX < leftBorder) {
-        _mousePositionHorizontal = "_left";
+        _mousePositionHorizontal = HorizontalPosition.left;
       } else if (_mouseX > rightBorder) {
-        _mousePositionHorizontal = "_right";
+        _mousePositionHorizontal = HorizontalPosition.right;
       } else {
-        _mousePositionHorizontal = "";
+        _mousePositionHorizontal = HorizontalPosition.center;
       }
 
       if (_mouseY < topBorder) {
-        _mousePositionVertical = "_up";
+        _mousePositionVertical = VerticalPosition.up;
       } else if (_mouseY > bottomBorder) {
-        _mousePositionVertical = "_down";
+        _mousePositionVertical = VerticalPosition.down;
       } else {
-        _mousePositionVertical = "";
+        _mousePositionVertical = VerticalPosition.center;
       }
     });
   }
@@ -70,8 +74,8 @@ class _HomePageState extends State<HomePage> {
           },
           onPanEnd: (DragEndDetails details) {
             setState(() {
-              _mousePositionHorizontal = "";
-              _mousePositionVertical = "";
+              _mousePositionHorizontal = HorizontalPosition.center;
+              _mousePositionVertical = VerticalPosition.center;
             });
           },
           child: MouseRegion(
@@ -102,19 +106,9 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Stack(
-                            children: [
-                              const CircleAvatar(
-                                radius: 100,
-                                backgroundImage:
-                                    AssetImage("assets/imgs/profile.png"),
-                              ),
-                              CircleAvatar(
-                                radius: 100,
-                                backgroundImage: AssetImage(
-                                    "assets/imgs/profile${_mousePositionHorizontal}${_mousePositionVertical}.png"),
-                              ),
-                            ],
+                          EyeRollingAvatar(
+                            horizontalPosition: _mousePositionHorizontal,
+                            verticalPosition: _mousePositionVertical,
                           ),
                           const SizedBox(
                             height: 10,
