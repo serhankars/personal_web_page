@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:web_page_ui/model/enums/horizontal_position.dart';
-import 'package:web_page_ui/model/enums/vertical_position.dart';
+import '../model/enums/horizontal_position.dart';
+import '../model/enums/vertical_position.dart';
 
 class EyeRollingAvatar extends StatelessWidget {
   final HorizontalPosition horizontalPosition;
@@ -15,7 +13,7 @@ class EyeRollingAvatar extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext context) {
     return Stack(
       children: [
         Opacity(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:web_page_ui/model/enums/horizontal_position.dart';
-import 'package:web_page_ui/model/enums/vertical_position.dart';
 
+import '../model/enums/horizontal_position.dart';
+import '../model/enums/vertical_position.dart';
 import '../widgets/eye_rolling_avatar.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   int bottomBorder = 300;
 
   @override
-  void setState(VoidCallback fn) {
+  void initState() {
     precacheImage(const AssetImage('assets/imgs/profile.png'), context);
     precacheImage(const AssetImage('assets/imgs/profile_up.png'), context);
     precacheImage(const AssetImage('assets/imgs/profile_left_up.png'), context);
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     precacheImage(const AssetImage('assets/imgs/profile_down.png'), context);
     precacheImage(const AssetImage('assets/imgs/profile_left.png'), context);
     precacheImage(const AssetImage('assets/imgs/profile_right.png'), context);
-    super.setState(fn);
+    super.initState();
   }
 
   void _onPositionChange(Offset position, BoxConstraints constraints) {

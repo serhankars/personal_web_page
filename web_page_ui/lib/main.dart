@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_page_ui/pages/home_page.dart';
+import 'pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Serhan Kars\' Personal Web Page',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         scaffoldBackgroundColor: Colors.grey.shade200,
       ),
       home: const HomePage(),
