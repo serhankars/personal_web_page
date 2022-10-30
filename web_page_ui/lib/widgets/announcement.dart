@@ -16,12 +16,11 @@ class Announcement extends StatelessWidget {
         dashPattern: const [8, 4],
         strokeWidth: 6,
         child: Container(
+          constraints: const BoxConstraints(maxWidth: 400),
           padding: const EdgeInsets.all(20),
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
-          width: 500,
-          height: 160,
           child: Column(
             children: [
               const Text(
